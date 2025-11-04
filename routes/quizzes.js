@@ -14,6 +14,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get quiz by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const quiz = await Quiz.findById(req.params.id).populate('createdBy', 'username');
+    if (!quiz) {
+      return res.status(404).json({ error: 'Quiz not found' });
+    }
+    res.json(quiz);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Create quiz
 router.post('/', auth, async (req, res) => {
   try {
@@ -30,6 +43,10 @@ router.post('/:id/submit', auth, async (req, res) => {
   try {
     const { score, timeTaken } = req.body;
     const quiz = await Quiz.findById(req.params.id);
+    
+    if (!quiz) {
+      return res.status(404).json({ error: 'Quiz not found' });
+    }
     
     const result = new Result({
       user: req.user.id,

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [quizzes, setQuizzes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchQuizzes();
@@ -25,7 +27,7 @@ function Home() {
           <div key={quiz._id} className="quiz-card">
             <h3>{quiz.title}</h3>
             <p>{quiz.description}</p>
-            <button className="btn btn-primary">Take Quiz</button>
+            <button className="btn btn-primary" onClick={() => navigate(`/quiz/${quiz._id}`)}>Take Quiz</button>
           </div>
         ))}
       </div>

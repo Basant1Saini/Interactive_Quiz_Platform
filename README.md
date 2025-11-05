@@ -94,8 +94,11 @@ Interactive_Quiz_Platform/
    ```
 
 2. **Setup environment:**
-   - Copy `.env` and update MongoDB URI
-   - Start MongoDB service
+   - Copy `.env.example` to `.env`
+   - **Local MongoDB:** Start MongoDB service
+   - **MongoDB Atlas:** Follow `MONGODB_ATLAS_SETUP.md` guide
+   - Update `MONGODB_URI` in `.env`
+   - Generate secure `JWT_SECRET`
 
 3. **Start development:**
    ```bash
@@ -104,10 +107,23 @@ Interactive_Quiz_Platform/
    - Server: http://localhost:5000
    - Client: http://localhost:3000
 
+## Database Options
+
+### Local MongoDB
+- Install MongoDB locally
+- Use: `mongodb://localhost:27017/quiz-platform`
+
+### MongoDB Atlas (Recommended)
+- Free cloud database (512MB)
+- Automatic backups and scaling
+- Built-in security features
+- See `MONGODB_ATLAS_SETUP.md` for setup guide
+- Use: `mongodb+srv://username:password@cluster.mongodb.net/quiz-platform`
+
 ## Recent Updates
 - ✅ Converted from React to Vanilla JavaScript
 - ✅ Implemented client-side SPA routing
 - ✅ Zero framework dependencies
 - ✅ Modular JS architecture
 - ✅ Responsive CSS design
-- ✅ Fixed deprecated code patterns
+- ✅ Added MongoDB Atlas setup guide
